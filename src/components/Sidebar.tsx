@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="bg-black/50 backdrop-blur-lg border-r border-purple-500/20 p-6 w-64 min-h-screen">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-bold bg-linear-to-br from-purple-400 to-pink-400 bg-clip-text text-transparent">
           Menu
         </h2>
       </div>
@@ -30,7 +30,7 @@ const Sidebar: React.FC = () => {
                   to={item.path}
                   className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
                     isActive
-                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50'
+                      ? 'bg-linear-to-br from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50'
                       : 'text-purple-300 hover:bg-purple-900/30 hover:text-white'
                   }`}
                 >

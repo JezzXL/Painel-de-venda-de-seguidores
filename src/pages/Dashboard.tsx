@@ -33,14 +33,14 @@ const products: Product[] = [
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-black via-purple-950 to-black">
+    <div className="flex min-h-screen bg-linear-to-br from-black via-purple-950 to-black">
       <Sidebar />
       <main className="flex-1 p-8">
         {/* Hero Section */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <TrendingUp className="w-10 h-10 text-purple-400" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-linear-to-br from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Painel de Venda de Seguidores
             </h1>
           </div>
@@ -51,7 +51,7 @@ const Dashboard: React.FC = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-gradient-to-br from-purple-900/50 to-black/50 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-purple-500/20">
+          <div className="bg-linear-to-br from-purple-900/50 to-black/50 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-purple-500/20">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-300 text-sm font-medium">Total de Pacotes</p>
@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-900/50 to-black/50 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-purple-500/20">
+          <div className="bg-linear-to-br from-purple-900/50 to-black/50 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-purple-500/20">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-300 text-sm font-medium">Seguidores Disponíveis</p>
@@ -75,7 +75,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-900/50 to-black/50 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-purple-500/20">
+          <div className="bg-linear-to-br from-purple-900/50 to-black/50 backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-purple-500/20">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-300 text-sm font-medium">A partir de</p>
@@ -96,7 +96,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Features Section */}
-        <div className="mt-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white shadow-2xl">
+        <div className="mt-16 bg-linear-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-white shadow-2xl">
           <h2 className="text-2xl font-bold mb-6">Por que escolher nossos pacotes?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-start gap-3">
