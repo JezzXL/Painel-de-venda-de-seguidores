@@ -14,17 +14,17 @@ const Checkout: React.FC = () => {
   const { items, getTotal, clearCart } = useCartStore();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<'credit' | 'pix' | 'boleto'>('credit');
+  const [paymentMethod, setPaymentMethod] = useState<'credit' | 'pix'>('credit');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    username: '',
     cardNumber: '',
     cardName: '',
     expiryDate: '',
     cvv: '',
-    cpf: ''
+    cpf: '',
+    username: ''
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -171,7 +171,7 @@ const Checkout: React.FC = () => {
                 </h2>
 
                 {/* Opções de Pagamento */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <button
                     type="button"
                     onClick={() => setPaymentMethod('credit')}
@@ -215,32 +215,6 @@ const Checkout: React.FC = () => {
                     </p>
                     {paymentMethod === 'pix' && (
                       <span className="text-xs text-green-400 mt-1 block">✓ Aprovação Instantânea</span>
-                    )}
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('boleto')}
-                    className={`p-4 rounded-xl border-2 transition-all duration-300 ${
-                      paymentMethod === 'boleto'
-                        ? 'border-orange-500 bg-orange-500/20 shadow-lg shadow-orange-500/30'
-                        : 'border-purple-500/30 bg-black/30 hover:border-purple-500/50'
-                    }`}
-                  >
-                    <div className={`w-8 h-8 mx-auto mb-2 flex items-center justify-center ${
-                      paymentMethod === 'boleto' ? 'text-orange-400' : 'text-purple-500/50'
-                    }`}>
-                      <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M4 4h2v16H4V4zm4 0h2v16H8V4zm4 0h2v16h-2V4zm4 0h2v16h-2V4z"/>
-                      </svg>
-                    </div>
-                    <p className={`text-sm font-semibold ${
-                      paymentMethod === 'boleto' ? 'text-white' : 'text-purple-300'
-                    }`}>
-                      Boleto
-                    </p>
-                    {paymentMethod === 'boleto' && (
-                      <span className="text-xs text-orange-400 mt-1 block">✓ Vence em 3 dias</span>
                     )}
                   </button>
                 </div>
@@ -338,24 +312,6 @@ const Checkout: React.FC = () => {
                     </div>
                   )}
 
-                  {paymentMethod === 'boleto' && (
-                    <div className="bg-orange-500/10 border border-orange-500/30 rounded-xl p-6 text-center">
-                      <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M4 4h2v16H4V4zm4 0h2v16H8V4zm4 0h2v16h-2V4zm4 0h2v16h-2V4z"/>
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-2">Pagamento via Boleto</h3>
-                      <p className="text-orange-200 text-sm mb-4">
-                        O boleto será gerado após a confirmação e enviado para seu email. Vencimento em 3 dias úteis.
-                      </p>
-                      <div className="flex items-center justify-center gap-2 text-orange-400 text-sm">
-                        <CheckCircle className="w-4 h-4" />
-                        <span>Aprovação em até 2 dias úteis</span>
-                      </div>
-                    </div>
-                  )}
-
                   {/* CPF (para todos os métodos) */}
                   <div>
                     <label className="block text-purple-200 text-sm font-semibold mb-2">
@@ -382,8 +338,6 @@ const Checkout: React.FC = () => {
                 className={`w-full flex items-center justify-center gap-3 px-8 py-4 ${
                   paymentMethod === 'pix' 
                     ? 'bg-linear-to-r from-green-600 to-emerald-600 hover:shadow-green-500/50' 
-                    : paymentMethod === 'boleto'
-                    ? 'bg-linear-to-r from-orange-600 to-orange-700 hover:shadow-orange-500/50'
                     : 'bg-linear-to-r from-purple-600 to-pink-600 hover:shadow-purple-500/50'
                 } text-white font-bold text-lg rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
@@ -395,7 +349,7 @@ const Checkout: React.FC = () => {
                 ) : (
                   <>
                     <CheckCircle className="w-6 h-6" />
-                    {paymentMethod === 'pix' ? 'Gerar QR Code PIX' : paymentMethod === 'boleto' ? 'Gerar Boleto' : 'Confirmar Pagamento'} - R$ {getTotal().toFixed(2)}
+                    {paymentMethod === 'pix' ? 'Gerar QR Code PIX' : 'Confirmar Pagamento'} - R$ {getTotal().toFixed(2)}
                   </>
                 )}
               </button>

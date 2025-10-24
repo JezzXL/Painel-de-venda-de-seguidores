@@ -28,6 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const config = serviceConfig[product.serviceType || 'seguidores'];
   const [quantity, setQuantity] = useState(config.min);
+  const [linkOrUsername, setLinkOrUsername] = useState('');
   const totalPrice = (quantity * config.pricePerUnit).toFixed(2);
   const discount = quantity >= 5000 ? 10 : 0;
   const finalPrice = discount > 0 ? (parseFloat(totalPrice) * 0.9).toFixed(2) : totalPrice;
@@ -50,13 +51,34 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     visualizacoes: 'visualizações',
   };
 
+  const serviceInputLabel = {
+    seguidores: 'Nome de Usuário',
+    curtidas: 'Link do Post/Vídeo',
+    visualizacoes: 'Link do Vídeo',
+  };
+
+  const serviceInputPlaceholder = {
+    seguidores: '@nomedeusuario',
+    curtidas: 'https://instagram.com/p/...',
+    visualizacoes: 'https://tiktok.com/@...',
+  };
+
   const handleAddToCart = () => {
+    if (!linkOrUsername.trim()) {
+      alert(`Por favor, insira o ${serviceInputLabel[product.serviceType || 'seguidores']}`);
+      return;
+    }
+    
     addItem({
       ...product,
       followers: quantity,
       price: parseFloat(finalPrice),
       quantity: 1,
+      linkOrUsername: linkOrUsername
     });
+    
+    // Limpa o campo após adicionar
+    setLinkOrUsername('');
   };
 
   return (
@@ -115,6 +137,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <span>{config.min.toLocaleString()}</span>
             <span>{config.max.toLocaleString()}</span>
           </div>
+        </div>
+
+        {/* Campo de Link ou Username */}
+        <div className="mb-6">
+          <label className="block text-purple-200 text-sm font-semibold mb-2">
+            {serviceInputLabel[product.serviceType || 'seguidores']} *
+          </label>
+          <input
+            type="text"
+            value={linkOrUsername}
+            onChange={(e) => setLinkOrUsername(e.target.value)}
+            placeholder={serviceInputPlaceholder[product.serviceType || 'seguidores']}
+            className="w-full px-4 py-3 bg-black/50 border border-purple-500/30 rounded-xl text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-400 transition-colors"
+          />
+          <p className="text-xs text-purple-400 mt-1">
+            {product.serviceType === 'seguidores' 
+              ? 'Digite apenas o @ sem espaços' 
+              : 'Cole o link completo do post/vídeo'}
+          </p>
         </div>
 
         {/* Preço */}

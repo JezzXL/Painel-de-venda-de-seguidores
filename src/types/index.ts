@@ -7,6 +7,7 @@ export interface Product {
   icon?: string;
   platform?: 'instagram' | 'tiktok';
   serviceType?: 'seguidores' | 'curtidas' | 'visualizacoes';
+  linkOrUsername?: string;
 }
 
 export interface CartItem extends Product {

@@ -90,6 +90,20 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
             </div>
           </div>
 
+          {/* Link/Username */}
+          {item.linkOrUsername && (
+            <div className="bg-black/30 rounded-lg p-3 mb-3 border border-purple-500/20">
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-purple-300 text-sm">
+                  {item.serviceType === 'seguidores' ? 'Usuário:' : 'Link:'}
+                </span>
+                <span className="text-white text-sm break-all text-right">
+                  {item.linkOrUsername}
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Features */}
           <div className="flex flex-wrap gap-2 mb-4">
             <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full border border-green-500/30">
