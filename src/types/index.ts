@@ -5,6 +5,8 @@ export interface Product {
   price: number;
   description: string;
   icon?: string;
+  platform?: 'instagram' | 'tiktok';
+  serviceType?: 'seguidores' | 'curtidas' | 'visualizacoes';
 }
 
 export interface CartItem extends Product {
